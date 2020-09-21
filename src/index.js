@@ -41,8 +41,8 @@ function preload() {
   this.load.image("logo", puma);
   
   this.load.spritesheet("player", playerPNG, {
-    frameWidth: 100,
-    frameHeight: 600,
+    frameWidth: 60,
+    frameHeight: 450,
   });
 } 
 
@@ -67,11 +67,13 @@ function create() {
 
   player.setBounce(0.2);
   player.setCollideWorldBounds(true);
-  // player.body.setGravityY(300);
-  // player.setBounce(0.2);
+  player.body.setGravityY(300);
+  player.setBounce(0.2);
 
 
   this.physics.add.collider(player, colisao);
+
+  // player.body.setGravityY(300)
 
   // this.physics.add.collider(player, colisao);
 
@@ -123,19 +125,20 @@ function create() {
   
 }
 function update() {
-  cursors = this.input.keyboard.createCursorKeys();
- //keyboard press to move
- if (cursors.left.isDown) {
-  player.body.setVelocityX(-150);
-} else if (cursors.right.isDown) {
-  player.body.setVelocityX(150);
-} else if (cursors.up.isDown) {
-  player.body.setVelocityY(-150);
-} else if (cursors.down.isDown) {
-  player.body.setVelocityY(150);
-} else{
-  player.body.setVelocityY(0);
-}
+      cursors = this.input.keyboard.createCursorKeys();
+    //keyboard press to move
+    if (cursors.left.isDown) {
+      player.setVelocityX(-160);
+    } else if (cursors.right.isDown) {
+      player.setVelocityX(160);
+    } else {
+      player.setVelocityX(0);
+    } 
+    
+    if(cursors.up.isDown && player.body.blocked.down){
+      // if(cursors.up.isDown && player.body.touching.down){
+        player.setVelocityY(-430);
+    }
 
 }
 /*import Phaser from "phaser";
