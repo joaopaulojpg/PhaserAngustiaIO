@@ -6,22 +6,21 @@ import puma from "./assets/puma_limimari.png";
 import highway from "./assets/asfalto.png";
 // import mapPNG from "./assets/pngbarn (1).png";
 // import mapJSON from "./assets/map2.json";
-import playerPNG from "./assets/player-3.png";
+import playerPNG from "./assets/airfoce1.png";
 
 import mapPNG from "./assets/background-cartoon.png";
-import mapJSON from "./assets/angustiaIO.json";
+import mapJSON from "./assets/angustiav1.json";
 
 
 const config = {
   type: Phaser.AUTO,
   parent: "phaser-example",
-  width: 1200,
-  height: 1200,
+  width: 900,
+  height: 900,
   physics: {
     default: "arcade",
     arcade: {
-      gravity: { y: 300 },
-      debug: false
+      gravity: { y: 0 },
     },
   },
   scene: {
@@ -34,77 +33,28 @@ const config = {
 const game = new Phaser.Game(config);
 let player
 var cursors
-var colisao
+
 function preload() {
   this.load.image("tiles", mapPNG);
   this.load.tilemapTiledJSON("map", mapJSON);
   this.load.image("logo", puma);
   
-  this.load.spritesheet("player", playerPNG, {
-    frameWidth: 100,
-    frameHeight: 600,
-  });
-} 
+  // this.load.spritesheet("player", playerPNG, {
+  //   frameWidth: 32,
+  //   frameHeight: 60,
+  // });
+}
 
 function create() {
-
   const map = this.make.tilemap({ key: "map" });
-  const tileset = map.addTilesetImage("background-cartoon", "tiles");
+  const tileset = map.addTilesetImage("assets", "tiles");
 
-  colisao = this.physics.add.staticGroup();
-
-
-  colisao = map.createStaticLayer("colisao", tileset, 0, 0);
-  colisao.setCollisionByProperty({ collider: true });
-  // colisao.setDepth(10);
-
-  // colisao = this.physics.add.staticGroup();
-
-  // player   = this.physics.add.sprite(400,900, "player");
-
-  ///// AQUII
-  player = this.physics.add.sprite(100, 750, 'player');
-
-  player.setBounce(0.2);
-  player.setCollideWorldBounds(true);
-  // player.body.setGravityY(300);
-  // player.setBounce(0.2);
-
-
-  this.physics.add.collider(player, colisao);
-
-  // this.physics.add.collider(player, colisao);
-
-  // this.anims.create({
-  //     key: 'left',
-  //     frames: this.anims.generateFrameNumbers('player', { start: 0, end: 3 }),
-  //     frameRate: 10,
-  //     repeat: -1
-  // });
-
-  // this.anims.create({
-  //     key: 'turn',
-  //     frames: [ { key: 'player', frame: 4 } ],
-  //     frameRate: 20
-  // });
-
-  // this.anims.create({
-  //     key: 'right',
-  //     frames: this.anims.generateFrameNumbers('player', { start: 5, end: 8 }),
-  //     frameRate: 10,
-  //     repeat: -1
-  // });
-
-
-  // this.physics.add.collider(player, colisao);
-
-
-  // const camera = this.cameras.main;
-  // camera.startFollow(player);
-  // camera.setBounds(0, 0, 1200, 1200);
+  const chao = map.createStaticLayer("chao", tileset, 0, 0);
+  const colisao = map.createStaticLayer("colisao", tileset, 0, 0);
 
   // map.createStaticLayer("chao", tileset, 0, 0);
 
+  // player = this.physics.add.sprite(100,300, "play÷er");
   
   
   // objectCollider.setCollisionByProperty({ collider: true });
@@ -123,19 +73,20 @@ function create() {
   
 }
 function update() {
+  
+  player.body.setVelocity(15);
   cursors = this.input.keyboard.createCursorKeys();
- //keyboard press to move
- if (cursors.left.isDown) {
-  player.body.setVelocityX(-150);
-} else if (cursors.right.isDown) {
-  player.body.setVelocityX(150);
-} else if (cursors.up.isDown) {
-  player.body.setVelocityY(-150);
-} else if (cursors.down.isDown) {
-  player.body.setVelocityY(150);
-} else{
-  player.body.setVelocityY(0);
-}
+
+  //keyboard press to move
+  if (cursors.left.isDown) {
+    player.body.setVelocityX(-150);
+  } else if (cursors.right.isDown) {
+    player.body.setVelocityX(150);
+  } else if (cursors.up.isDown) {
+    player.body.setVelocityY(-150);
+  } else if (cursors.down.isDown) {
+    player.body.setVelocityY(150);
+  } 
 
 }
 /*import Phaser from "phaser";
