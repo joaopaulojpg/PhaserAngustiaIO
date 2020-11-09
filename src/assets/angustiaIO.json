@@ -5063,7 +5063,8 @@
                         {
                          "name":"collider",
                          "type":"bool",
-                         "value":true
+                         "value":true,
+                         "immovable": false
                         }]
                 }, 
                 {
