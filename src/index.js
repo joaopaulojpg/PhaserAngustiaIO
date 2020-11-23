@@ -9,7 +9,7 @@ import highway from "./assets/asfalto.png";
 import playerPNG from "./assets/sprite-completa.png";
 import iconTwiter from "./assets/icon-twiter.png";
 
-import inimigoPNG from "./assets/inimigo.png";
+import inimigoPNG from "./assets/twitter - direita.png";
 import mapaBk from "./assets/background2.jpeg";
 
 import mapPNG from "./assets/background-cartoon.png";
@@ -46,9 +46,10 @@ var inimigo
 function preload() {
   this.load.image("tiles", mapPNG);
   this.load.tilemapTiledJSON("map", mapJSON);
-  this.load.image('inimigo', inimigoPNG, {
-    frameWidth: 20,
-    frameHeight: 40,
+
+  this.load.spritesheet("inimigo", inimigoPNG, {
+    frameWidth: 85,
+    frameHeight: 85,
   });
 
   this.load.spritesheet("player", playerPNG, {
@@ -158,6 +159,34 @@ function create() {
     })
 
 
+
+
+    
+    // anims
+    const anims2 = this.anims
+
+    anims2.create({
+      key: "left", 
+      frames: anims2.generateFrameNames("inimigo", {start: 0, end: 1}),
+      frameRate: 20,
+      repeat: -1
+    })
+
+    anims2.create({
+      key: "right", 
+      frames: anims2.generateFrameNames("inimigo", {start: 0, end: 1}),
+      frameRate: 20,
+      repeat: -1
+    })
+
+    anims2.create({
+      key: "front", 
+      frames: anims2.generateFrameNames("inimigo", {start: 0, end: 1}),
+      frameRate: 20,
+      repeat: -1
+    })
+
+
   
 }
 function update() {
@@ -203,16 +232,20 @@ function aproximaInimigo(){
 
     if(player.body.position.y < inimigo.body.position.y) {
       inimigo.body.setVelocityY(-100);
+      inimigo.anims2.play("front", true)
     }
     if(player.body.position.y > inimigo.body.position.y) {
       inimigo.body.setVelocityY(100);
+      inimigo.anims2.play("front", true)
     }
     if(player.body.position.x < inimigo.body.position.x) {
       inimigo.body.setVelocityX(-100);
+      inimigo.anims2.play("left", true)
     }
 
     if(player.body.position.x > inimigo.body.position.x) {
       inimigo.body.setVelocityX(100);
+      inimigo.anims2.play("right", true)
     }
 
 
