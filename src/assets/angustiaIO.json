@@ -62,11 +62,11 @@
         {
          "columns":45,
          "firstgid":1,
-         "image":"..\/Documents\/background-cartoon.png",
+         "image":"./background2.jpeg",
          "imageheight":960,
          "imagewidth":1440,
          "margin":0,
-         "name":"background-cartoon",
+         "name":"background2",
          "spacing":0,
          "tilecount":1350,
          "tileheight":32,
