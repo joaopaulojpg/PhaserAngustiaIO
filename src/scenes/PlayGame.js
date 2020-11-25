@@ -47,7 +47,7 @@ preload(){
 }
 create() {
 
-    this.mapa.setDepth(10)
+    // this.mapa.setDepth(10)
     const map = this.make.tilemap({ key: "map" });
 
 
@@ -101,7 +101,8 @@ create() {
         key: "left", 
         frames: anims.generateFrameNames("player", {start: 8, end: 15}),
         frameRate: 20,
-        repeat: -1
+        repeat: -1,
+        
       })
   
       anims.create({
@@ -163,8 +164,10 @@ update() {
       //keyboard press to move
       if (this.cursors.left.isDown) {
         this.player.body.setVelocityX(-240);
+        this.player.flipX = true;
       } else if (this.cursors.right.isDown) {
         this.player.body.setVelocityX(240);
+        this.player.flipX = false;
       }
   
       if(this.cursors.up.isDown && this.player.body.blocked.down){
