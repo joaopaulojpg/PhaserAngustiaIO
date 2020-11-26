@@ -1,7 +1,7 @@
 
-export default class PlayGame extends Phaser.Scene {
+export default class FaseTwiter extends Phaser.Scene {
     constructor() {
-        super("PlayGame");
+        super("FaseTwiter");
         this.player;
         this.inimigo;
 
@@ -39,29 +39,23 @@ export default class PlayGame extends Phaser.Scene {
         this.star
         this.colisao
         this.mapa
-
-        this.texto
         
         
       }
 preload(){
     this.mapa = this.load.tilemapTiledJSON("map", "src/assets/angustiaIO.json");
 }
-
-
 create() {
 
     const map = this.make.tilemap({ key: "map" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(1300, 300, 'star');
+    this.star = this.physics.add.sprite(20, 900, 'star');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
     
   
-    this.text = this.add.text(16, 16, 'Vida: 3', { fill: '#ffffff' });
-    this.text = this.add.text(100, 16, 'Dica: Zumbis não são inteligentes e são lentos, sentem dificuldades em subir nas plataformas', { fill: 'red' });
-
+  
   
     const tileset = map.addTilesetImage("background2", "tiles");
     
@@ -84,7 +78,6 @@ create() {
     this.player.body.setGravityY(300);
     this.player.setBounce(0.2);
   
-
     // inimigos = this.add.group();
     // inimigos.enableBody = true;
   
@@ -94,107 +87,11 @@ create() {
   
     this.physics.add.collider(this.player, this.star);
     
-    this.inimigo = this.physics.add.sprite(400, 90, 'inimigoFace');
-    this.inimigo.setGravityY(300);
+    this.inimigo = this.physics.add.sprite(400, 90, 'inimigo');
+    // inimigo.body.collideWorldBounds = true;
     this.inimigo.setCollideWorldBounds(true);
-
-
-    this.inimigo2 = this.physics.add.sprite(800, 100, 'inimigoFace');
-    this.inimigo2.setGravityY(300);
-    this.inimigo2.setCollideWorldBounds(true);
-
-
-    this.inimigo3 = this.physics.add.sprite(1300, 300, 'inimigoFace');
-    this.inimigo3.setGravityY(300);
-    this.inimigo3.setCollideWorldBounds(true);
-
-
-
-
     this.physics.add.collider(this.inimigo, this.colisao);
     this.physics.add.collider(this.inimigo, this.player);
-    this.physics.add.collider(this.inimigo2, this.colisao);
-    this.physics.add.collider(this.inimigo2, this.player);
-    this.physics.add.collider(this.inimigo3, this.colisao);
-    this.physics.add.collider(this.inimigo3, this.player);
-
-
-    // this.physics.add.collider(this.inimigo2, this.player, this.derrotaPage,null,this);
-    this.physics.add.overlap(
-      this.inimigo,
-      this.player,
-      //funcao para matar o player
-      this.derrotaPage,
-      null,
-      this
-    );
-    this.physics.add.overlap(
-        this.inimigo2,
-        this.player,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
-    this.physics.add.overlap(
-        this.inimigo3,
-        this.player,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
-
-
-     // this.physics.add.collider(this.inimigo2, this.player, this.derrotaPage,null,this);
-     this.physics.add.overlap(
-       this.player,
-       this.inimigo,
-      //funcao para matar o player
-      this.derrotaPage,
-      null,
-      this
-    );
-    this.physics.add.overlap(
-        this.player,
-        this.inimigo2,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
-    this.physics.add.overlap(
-        this.player,
-        this.inimigo3,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
-
-    this.physics.add.overlap(
-      this.player,
-      this.star,
-      //funcao para matar o player
-      this.vitoriaPage,
-      null,
-      this
-  );
-
-  //   this.enemies = map.createFromObjects("enemy", "enemy", {});
-  //   this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies, this.player, this.attack);
-  //   this.physics.add.overlap(
-  //     this.enemiesGroup,
-  //     this.player,
-  //     //funcao para matar o player
-  //     this.hitEnemy,
-  //     null,
-  //     this
-  // );
-
-
-    
-
     this.physics.add.collider(this.star, this.player);
   
       // anims
@@ -225,22 +122,22 @@ create() {
   
       anims.create({
         key: "ileft", 
-        frames: anims.generateFrameNames("inimigoFace", {start: 0, end: 1}),
-        frameRate: 8,
+        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        frameRate: 20,
         repeat: -1
       })
   
       anims.create({
         key: "iright", 
-        frames: anims.generateFrameNames("inimigoFace", {start: 0, end: 1}),
-        frameRate: 8,
+        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        frameRate: 20,
         repeat: -1
       })
   
       anims.create({
         key: "ifront", 
-        frames: anims.generateFrameNames("inimigoFace", {start: 0, end: 1}),
-        frameRate: 8,
+        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        frameRate: 20,
         repeat: -1
       })
 
@@ -251,15 +148,6 @@ create() {
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
     
 }
-
-derrotaPage() {
-  this.scene.start("controles")
-  // alert('bateu')
-}
-vitoriaPage() {
-  alert('ganhamu')
-}
-
 update() {
     const prevVelocity = this.player.body.velocity.clone();
     this.player.body.setVelocityX(0);
@@ -293,97 +181,35 @@ update() {
       
      
   
-    this.aproximaInimigo(this.inimigo);
-    this.aproximaInimigo(this.inimigo2);
-    this.aproximaInimigo(this.inimigo3);
+    this.aproximaInimigo();
+  
 
 }   
+ aproximaInimigo(){
 
- aproximaInimigo(e){
+    // Faz com que ele fique parado
+    // this.inimigo.setVelocityX(-100);
+    // this.inimigo.anims.play("ileft", true)
 
-
-    if(this.player.body.position.y > e.body.position.y && e.body.blocked.down) {
-      if(e.body.blocked.left) {
-        e.body.setVelocityX(15);
-      }
-      if(e.body.blocked.right) {
-        e.body.setVelocityX(-30);
-      }
-    }else if((this.player.body.position.y < e.body.position.y) && this.player.body.down){
-      e.body.setVelocityY(-400);
-
-    }else {
-
-      // if((this.player.body.position.y < e.body.position.y) && this.player.body.blocked.down && e.body.blocked.down) {
-      //     e.body.setVelocityY(-400);
-      // }
-
-      if(!e.body.blocked.up) {
-        if(e.body.blocked.left && (this.player.body.position.y < e.body.position.y)) {
-            e.body.setVelocityX(-30);
-            e.body.setVelocityY(-310);
-        }
-
-        if(e.body.blocked.right && (this.player.body.position.y > e.body.position.y)) {
-          e.body.setVelocityX(30);
-          e.body.setVelocityY(-310);
-        }
-        if(e.body.blocked.left && (this.player.body.position.x < e.body.position.x)) {
-          e.body.setVelocityY(-310);
-        }
-        if(e.body.blocked.left && (this.player.body.position.x > e.body.position.x)) {
-          e.body.setVelocityY(-310);
-        }
-
-        if((this.player.body.position.y < e.body.position.y) && e.body.blocked.down && (e.body.blocked.left || e.body.blocked.right)) {
-          e.body.setVelocityY(-310);
-        }
-
-        if(this.player.body.position.x < e.body.position.x) {
-          e.body.setVelocityX(-30);
-          e.anims.play("ileft", true)
-          e.flipX = true;
-        }
-  
-        if(this.player.body.position.x > e.body.position.x) {
-          e.body.setVelocityX(30);
-          e.anims.play("iright", true)
-          e.flipX = false;
-        }
-
-      }else {
-          if(e.body.blocked.left && (this.player.body.position.y < e.body.position.y)) {
-          e.body.setVelocityX(30);
-          e.anims.play("iright", true)
-          }else if(e.body.blocked.right && (this.player.body.position.y > e.body.position.y)) {
-            e.body.setVelocityX(-30);
-            e.anims.play("ileft", true)
-          }else {
-
-            if((this.player.body.position.y < e.body.position.y) && e.body.blocked.down && (e.body.blocked.left || e.body.blocked.right)) {
-              e.body.setVelocityY(-310);
-            }
-
-            if(e.body.blocked.down) {
-
-              if(this.player.body.position.x < e.body.position.x) {
-                e.body.setVelocityX(-30);
-                e.anims.play("ileft", true)
-                e.flipX = true;
-              }
-        
-              if(this.player.body.position.x > e.body.position.x) {
-                e.body.setVelocityX(30);
-                e.anims.play("iright", true)
-                e.flipX = false;
-              }
-            }
-          }
-
-        }
-
+    if(this.player.body.position.y < this.inimigo.body.position.y) {
+      this.inimigo.body.setVelocityY(-100);
+      // this.inimigo.anims.play("ifront", true)
+    }
+    if(this.player.body.position.y > this.inimigo.body.position.y) {
+      this.inimigo.body.setVelocityY(100);
+      // this.inimigo.anims.play("ifront", true)
+    }
+    if(this.player.body.position.x < this.inimigo.body.position.x) {
+      this.inimigo.body.setVelocityX(-100);
+      this.inimigo.anims.play("ileft", true)
+      this.inimigo.flipX = true;
     }
 
+    if(this.player.body.position.x > this.inimigo.body.position.x) {
+      this.inimigo.body.setVelocityX(100);
+      this.inimigo.anims.play("iright", true)
+      this.inimigo.flipX = false;
+    }
 
    
 }

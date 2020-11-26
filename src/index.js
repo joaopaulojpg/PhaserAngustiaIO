@@ -8,8 +8,8 @@ import derrota from "./scenes/derrota";
 const config = {
     type: Phaser.AUTO,
     parent: "phaser-example",
-    width: 1000,
-    height: 800,
+    width: 1440,
+    height: 960,
  
     scale: {
       // Fit to window
@@ -31,7 +31,7 @@ const config = {
     physics: {
       default: "arcade",
       arcade: {
-        debug: true,
+        debug: false,
         gravity: {
           gravity: { y: 500 },
         },
