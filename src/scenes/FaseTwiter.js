@@ -3,7 +3,7 @@ export default class FaseTwiter extends Phaser.Scene {
     constructor() {
         super("FaseTwiter");
         this.player;
-        this.inimigo;
+        this.inimigoTwiter;
 
         this.life = 1
         this.golpeesq;
@@ -43,20 +43,18 @@ export default class FaseTwiter extends Phaser.Scene {
         
       }
 preload(){
-    this.mapa = this.load.tilemapTiledJSON("map", "src/assets/angustiaIO.json");
+  // this.load.image("tiles", "src/assets/background-cartoon.png");
+  this.mapa = this.load.tilemapTiledJSON("map2", "src/assets/map2.json");
 }
 create() {
 
-    const map = this.make.tilemap({ key: "map" });
+    const map = this.make.tilemap({ key: "map2" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(20, 900, 'star');
+    this.star = this.physics.add.sprite(1300, 300, 'star');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
-    
-  
-  
-  
+      
     const tileset = map.addTilesetImage("background2", "tiles");
     
     this.colisao = this.physics.add.staticGroup();
@@ -67,11 +65,18 @@ create() {
   
     // this.colisao = this.physics.add.staticGroup();
   
+    // this.espinhos.setCollisionByProperty({ collider: true });
+    
+    // this.colisao = this.physics.add.staticGroup();
+  
     // player   = this.physics.add.sprite(400,900, "player");
   
     ///// AQUII
     this.player = this.physics.add.sprite(0, 0, 'player');
-    // this.inimigo = this.physics.add.sprite(400, 90, 'inimigo');
+    this.inimigoTwiter = this.physics.add.sprite(400, 90, 'inimigoTwiter');
+    // this.inimigoTwiter2 = this.physics.add.sprite(1000, 0, 'inimigoTwiter');
+
+    this.inimigoTwiter3 = this.physics.add.sprite(1200, 10, 'inimigoTwiter');
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -83,15 +88,28 @@ create() {
   
   
     this.physics.add.collider(this.player, this.colisao);
+    this.physics.add.collider(this.player, this.espinhos);
     this.physics.add.collider(this.star, this.colisao);
   
     this.physics.add.collider(this.player, this.star);
     
-    this.inimigo = this.physics.add.sprite(400, 90, 'inimigo');
     // inimigo.body.collideWorldBounds = true;
-    this.inimigo.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigo, this.colisao);
-    this.physics.add.collider(this.inimigo, this.player);
+    this.inimigoTwiter.setCollideWorldBounds(true);
+    this.physics.add.collider(this.inimigoTwiter, this.colisao);
+    this.physics.add.collider(this.inimigoTwiter, this.player);
+
+
+     // inimigo.body.collideWorldBounds = true;
+    //  this.inimigoTwiter2.setCollideWorldBounds(true);
+    //  this.physics.add.collider(this.inimigoTwiter2, this.colisao);
+    //  this.physics.add.collider(this.inimigoTwiter2, this.player);
+
+     this.inimigoTwiter3.setCollideWorldBounds(true);
+     this.physics.add.collider(this.inimigoTwiter3, this.colisao);
+     this.physics.add.collider(this.inimigoTwiter3, this.player);
+
+
+
     this.physics.add.collider(this.star, this.player);
   
       // anims
@@ -121,22 +139,22 @@ create() {
   
   
       anims.create({
-        key: "ileft", 
-        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        key: "fleft", 
+        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
         frameRate: 20,
         repeat: -1
       })
   
       anims.create({
-        key: "iright", 
-        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        key: "fright", 
+        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
         frameRate: 20,
         repeat: -1
       })
   
       anims.create({
-        key: "ifront", 
-        frames: anims.generateFrameNames("inimigo", {start: 0, end: 1}),
+        key: "ffront", 
+        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
         frameRate: 20,
         repeat: -1
       })
@@ -181,331 +199,53 @@ update() {
       
      
   
-    this.aproximaInimigo();
+    this.aproximaInimigo(this.inimigoTwiter);
+    // this.aproximaInimigo(this.inimigoTwiter2);
+    this.aproximaInimigo(this.inimigoTwiter3);
   
 
 }   
- aproximaInimigo(){
+ aproximaInimigo(e){
 
     // Faz com que ele fique parado
-    // this.inimigo.setVelocityX(-100);
-    // this.inimigo.anims.play("ileft", true)
+    // this.inimigoTwiter.setVelocityX(-100);
+    // this.inimigoTwiter.anims.play("ileft", true)
 
-    if(this.player.body.position.y < this.inimigo.body.position.y) {
-      this.inimigo.body.setVelocityY(-100);
-      // this.inimigo.anims.play("ifront", true)
+    if(this.player.body.position.y < e.body.position.y) {
+      e.body.setVelocityY(-70);
+      // e.anims.play("ifront", true)
     }
-    if(this.player.body.position.y > this.inimigo.body.position.y) {
-      this.inimigo.body.setVelocityY(100);
-      // this.inimigo.anims.play("ifront", true)
+    if(this.player.body.position.y > e.body.position.y) {
+      e.body.setVelocityY(70);
+      // e.anims.play("ifront", true)
     }
-    if(this.player.body.position.x < this.inimigo.body.position.x) {
-      this.inimigo.body.setVelocityX(-100);
-      this.inimigo.anims.play("ileft", true)
-      this.inimigo.flipX = true;
-    }
+    if(this.player.body.position.x != e.body.position.x) {
 
-    if(this.player.body.position.x > this.inimigo.body.position.x) {
-      this.inimigo.body.setVelocityX(100);
-      this.inimigo.anims.play("iright", true)
-      this.inimigo.flipX = false;
-    }
+      if(this.player.body.position.x < e.body.position.x) {
+        e.body.setVelocityX(-70);
+        e.anims.play("fleft", true)
+        e.flipX = true;
+      }
 
+      if(this.player.body.position.x > e.body.position.x) {
+        e.body.setVelocityX(70);
+        e.anims.play("fright", true)
+        e.flipX = false;
+      }
+
+    }
    
 }
 hitEnemy() {
     
-     
-    // if (this.keyD.isDown) {
-    //     this.player.anims.play("keyd", true);
-    // } else {
-    //     const r = Math.random()*100 
-            
-    //         if (r <1) {
-    //             if (!this.invincible) {
-    //                 this.damage.play();
-    //                 this.player.anims.play("damage")
-    //                 this.invincible = true;
-    //                 this.events.emit("hitEnemy", --this.life);
-    //                 this.textTela.setText('Vidas: '+ this.life);
-    //                 this.time.delayedCall(
-    //                     8000,
-    //                     () => {
-    //                       this.invincible = false;
-                          
-    //                     },
-    //                     null,
-    //                     this
-    //                   );
-    //         }
-            
-           
-          
-        
-    // }
-            
-    //     }
             
 }
 move(){
-    // const d = Phaser.Math.Distance.Between (
-    //     this.enemyfinal.x,
-    //     this.enemyfinal.y,
-    //     this.player.x,
-    //     this.player.y);
-        
-    // if (d < 100 && this.enemyfinal.x<this.player.x ) {
-    //     const randNumber = Math.floor(Math.random() * 3 + 1)
-        
-    //     switch(randNumber){
-    //         case 1:
-    //         this.state = this.ataque
-    //         this.enemyfinal.anims.play("efinalgolpe1",true)
-    //         this.time.addEvent({
-    //         delay:1300,
-    //         callback: () => {
-    //             this.enemyfinal.anims.stop()
-    //             this.enemyfinal.setVelocity(0)
-               
-    //         },
-    //         callbackScope: this,
-    //     })
-               
-                
-    //         break
-    //         case 2: 
-    //         this.state = this.ataque
-    //         this.enemyfinal.anims.play("efinalgolpe2",true)
-    //         this.time.addEvent({
-    //         delay:1300,
-    //         callback: () => {
-    //             this.enemyfinal.anims.stop()
-    //             this.enemyfinal.setVelocity(0)
-                
-    //         },
-    //         callbackScope: this,
-    //     })
-              
-    //             break
-           
-    //         case 3: 
-    //         this.state = this.defesa
-    //         this.enemyfinal.anims.play("efinaldefesa",true)
-           
-    //         this.time.addEvent({
-    //             delay:1300,
-    //             callback: () => {
-    //                 this.enemyfinal.anims.stop()
-    //                 this.enemyfinal.setVelocity(0)
-    //                 this.state = this.walking
-    //             },
-    //             callbackScope: this,
-    //         })
-               
-    //             break
-    //         default: 
-    //             this.setVelocityX(0)
-    //             this.enemyfinal.anims.stop()
-    //             this.state = this.ataque
-    //     }
-        
-    // }else if(d < 100 && this.enemyfinal.x > this.player.x ){
-    //     const randNumber = Math.floor(Math.random() * 3 + 1)
-    //     switch(randNumber){
-    //         case 1:
-    //         this.state = this.ataque
-    //         this.enemyfinal.anims.play("efinalgolpe",true)
-    //         this.time.addEvent({
-    //         delay:1300,
-    //         callback: () => {
-    //             this.enemyfinal.anims.stop()
-    //             this.enemyfinal.setVelocity(0)
-    //             this.state = this.walking
-    //         },
-    //         callbackScope: this,
-    //     })
-               
-                
-    //             break
-    //         case 2: 
-    //         this.state = this.ataque
-    //         this.enemyfinal.anims.play("efinalgolpe3",true)
-    //     this.time.addEvent({
-    //         delay:1300,
-    //         callback: () => {
-    //             this.enemyfinal.anims.stop()
-    //             this.enemyfinal.setVelocity(0)
-    //             this.state = this.walking
-    //         },
-    //         callbackScope: this,
-    //     })
-              
-    //             break
-           
-    //         case 3: 
-    //         this.state = this.defesa
-    //         this.enemyfinal.anims.play("efinaldefesa1",true)
-            
-    //         this.time.addEvent({
-    //             delay:1300,
-    //             callback: () => {
-    //                 this.enemyfinal.anims.stop()
-    //                 this.enemyfinal.setVelocity(0)
-    //                 this.state = this.walking
-    //             },
-    //             callbackScope: this,
-    //         })
-               
-    //             break
-    //         default: 
-    //             this.setVelocityX(0)
-    //             this.enemyfinal.anims.stop()
-    //     }
-    // } 
-    // else {
-    //     if (this.state == this.walking) {
-    //         if (d < 500) {
-    //             const randNumberr = Math.floor(Math.random() * 4 + 1)
-    //             switch(randNumberr){
-    //         case 1:
-               
-                
-    //             break
-    //         case 2: 
-              
-    //             break
-    //         case 3: 
-    //         this.enemyfinal.setVelocityX(30)
-    //         this.enemyfinal.anims.play("efinalb",true)
-                
-               
-    //             break
-    //         case 4: 
-    //         this.enemyfinal.setVelocityX(-30)
-    //         this.enemyfinal.anims.play("efinals",true)
-    //             break
-    //         default: 
-    //             this.setVelocityX(30)
-    //             this.enemyfinal.anims.stop()
-    //         }
-    //             if (this.enemyfinal.x < this.player.x  ) {
-    //                 this.enemyfinal.setVelocityX(30)
-    //                 this.enemyfinal.anims.play("efinald",true)            
-    //             } else if(this.enemyfinal.x > this.player.x) {
-    //                 this.enemyfinal.setVelocityX(-30)
-    //                 this.enemyfinal.anims.play("efinale",true)
-    //             } else{
-    //                 this.enemyfinal.anims.stop();
-    //             }
-                
-    //         } else {
-    //             this.enemyfinal.anims.stop();
-    //         }
-            
-    //     }    
-    // }
-    
-   
-    
-    // /*const randNumber = Math.floor(Math.random() * 4 + 1)
-    // switch(randNumber){
-    //     case 1:
-            
-    //         break
-    //     case 2: 
-        
-    //         break
-    //     case 3: 
-    //         this.enemyfinal.setVelocityY(30)
-    //         this.enemyfinal.anims.play("efinald",true)
-            
-           
-    //         break
-    //     case 4: 
-    //         this.enemyfinal.setVelocityY(-30)
-    //         this.enemyfinal.anims.play("efinale",true)
-           
-    //         break
-    //     default: 
-    //         this.enemyfinal.setVelocityX(30)
-    //         this.enemyfinal.anims.stop()
-    // }*/
-    // if (Math.random(100) < 40) {
-    //     if (d < 30 && (this.state != this.defesa) && this.keyD.isUp &&(this.keyA.isDown ||this.keyS.isDown)) {
-    //         this.attack.play();
-    //         this.enemyfinalLife = this.enemyfinalLife - 1;
-    //         this.textTela2.setText('Vida Boss: '+ this.enemyfinalLife);
-    //     } 
-    // }
-    
-    // if (this.enemyfinalLife <= 0) {
-    //     this.enemyfinal.anims.play("morte");
-    //     this.enemyfinal.setVisible(false);
-    //     this.enemyfinal.setActive(false);
-    //     this.physics.pause();
-    //     this.time.addEvent({
-    //         delay:2000,
-    //     callback: () => {
-    //         this.scene.start("vitoria")
-    //     },
-    //     callbackScope: this,
-    // })
-      
-    //     this.life = 15
-    //     this.enemyfinalLife = 1
-        
-    // }
-    // if(this.life <= 0){
-    //    this.player.body.setVelocity(0);
-       
-        
-        
-    //     this.player.anims.play("morto");
-    //     this.physics.pause();
-    //     this.time.addEvent({
-    //     delay:2000,
-    //     callback: () => {
-    //         this.player.anims.play("morto");
-
-    //         this.scene.start("derrota")
-    //     },
-    //     callbackScope: this,
-    // })
-    //     this.enemyfinalLife = 15
-    //     this.life = 1
-    // }
-    
-
+  
     
 }
   hitEnemyfinal() {
-    // if (this.keyD.isDown) {
-    //     this.player.anims.play("keyd", true);
-    // } else {
-            
-    //     if ((this.state ==this.ataque)) {
-               
-    //             if (!this.invincible) {
-    //                 this.damage.play();
-    //                 this.player.anims.play("damage")
-    //                 this.invincible = true;
-    //                 this.events.emit("hitEnemyfinal", --this.life);
-    //                 this.textTela.setText('Vidas: '+ this.life);
-    //                 this.time.delayedCall(
-    //                     2000,
-    //                     () => {
-    //                       this.invincible = false;
-                         
-    //                     },
-    //                     null,
-    //                     this
-    //                   );
-    //         }
-            
-           
-    //       }
-        
-    // }
+  
 }
 
 

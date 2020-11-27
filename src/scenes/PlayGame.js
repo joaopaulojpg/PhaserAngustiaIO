@@ -108,6 +108,10 @@ create() {
     this.inimigo3.setGravityY(300);
     this.inimigo3.setCollideWorldBounds(true);
 
+    
+    this.inimigo4 = this.physics.add.sprite(1100, 90, 'inimigoFace');
+    this.inimigo4.setGravityY(300);
+    this.inimigo4.setCollideWorldBounds(true);
 
 
 
@@ -117,60 +121,70 @@ create() {
     this.physics.add.collider(this.inimigo2, this.player);
     this.physics.add.collider(this.inimigo3, this.colisao);
     this.physics.add.collider(this.inimigo3, this.player);
+    this.physics.add.collider(this.inimigo4, this.colisao);
+    this.physics.add.collider(this.inimigo4, this.player);
 
 
     // this.physics.add.collider(this.inimigo2, this.player, this.derrotaPage,null,this);
     this.physics.add.overlap(
-      this.inimigo,
       this.player,
+      this.inimigo,
       //funcao para matar o player
       this.derrotaPage,
       null,
       this
     );
     this.physics.add.overlap(
-        this.inimigo2,
         this.player,
+        this.inimigo2,
         //funcao para matar o player
         this.derrotaPage,
         null,
         this
     );
     this.physics.add.overlap(
-        this.inimigo3,
         this.player,
+        this.inimigo3,
         //funcao para matar o player
         this.derrotaPage,
         null,
         this
     );
+    this.physics.add.overlap(
+      this.player,
+      this.inimigo4,
+      //funcao para matar o player
+      this.derrotaPage,
+      null,
+      this
+  );
 
 
      // this.physics.add.collider(this.inimigo2, this.player, this.derrotaPage,null,this);
-     this.physics.add.overlap(
-       this.player,
-       this.inimigo,
-      //funcao para matar o player
-      this.derrotaPage,
-      null,
-      this
-    );
-    this.physics.add.overlap(
-        this.player,
-        this.inimigo2,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
-    this.physics.add.overlap(
-        this.player,
-        this.inimigo3,
-        //funcao para matar o player
-        this.derrotaPage,
-        null,
-        this
-    );
+    //  this.physics.add.overlap(
+    //    this.player,
+    //    this.inimigo,
+    //   //funcao para matar o player
+    //   this.derrotaPage,
+    //   null,
+    //   this
+    // );
+    // this.physics.add.overlap(
+    //     this.player,
+    //     this.inimigo2,
+    //     //funcao para matar o player
+    //     this.derrotaPage,
+    //     null,
+    //     this
+    // );
+    // this.physics.add.overlap(
+    //     this.player,
+    //     this.inimigo3,
+    //     //funcao para matar o player
+    //     this.derrotaPage,
+    //     null,
+    //     this
+    // );
 
     this.physics.add.overlap(
       this.player,
@@ -257,7 +271,8 @@ derrotaPage() {
   // alert('bateu')
 }
 vitoriaPage() {
-  alert('ganhamu')
+  // console.log('ganhamu')
+  this.scene.start("VitoriaFacebook");
 }
 
 update() {
@@ -296,6 +311,7 @@ update() {
     this.aproximaInimigo(this.inimigo);
     this.aproximaInimigo(this.inimigo2);
     this.aproximaInimigo(this.inimigo3);
+    this.aproximaInimigo(this.inimigo4);
 
 }   
 

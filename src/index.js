@@ -5,6 +5,9 @@ import controles from "./scenes/controles";
 import PlayGame from "./scenes/PlayGame";
 import vitoria from "./scenes/vitoria";
 import derrota from "./scenes/derrota";
+import VitoriaFacebook from "./scenes/VitoriaFacebook";
+import FaseTwiter from "./scenes/FaseTwiter";
+
 const config = {
     type: Phaser.AUTO,
     parent: "phaser-example",
@@ -26,7 +29,9 @@ const config = {
       controles,
       PlayGame,
       vitoria,
-      derrota
+      derrota,
+      VitoriaFacebook,
+      FaseTwiter
     ],
     physics: {
       default: "arcade",

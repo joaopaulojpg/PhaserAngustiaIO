@@ -22,8 +22,12 @@ export default class BootScene extends Phaser.Scene {
   
     loadImages() {
       this.load.image("tiles", "src/assets/background-cartoon.png");
+      this.load.image("background-cartoon", "src/assets/background-cartoon.png");
+
       this.load.image("fundo", "src/assets/background2.jpeg");
-        //   this.load.image("test", "src/assets/img/bt2.png");
+
+      this.load.image("inicioImg", "src/assets/pagina-inicial.png");
+
         //   this.load.image("teste", "src/assets/img/imginic.png");
         //   this.load.image("teclas", "src/assets/img/teclass.png");
         //   this.load.image("morto", "src/assets/img/morto.png");
@@ -31,7 +35,9 @@ export default class BootScene extends Phaser.Scene {
     }
   
     loadTiledMap() {
+      this.load.tilemapTiledJSON("map2", "src/assets/map2.json");
       this.load.tilemapTiledJSON("map", "src/assets/angustiaIO.json");
+
       // this.mapa.setDepth(10)
     }
   
@@ -51,10 +57,15 @@ export default class BootScene extends Phaser.Scene {
         //     frameWidth: 64.15,
         //     frameHeight: 62,
         // });
-        this.load.spritesheet("inimigo", "src/assets/twitter-direita.png", {
-            frameWidth: 76,
-            frameHeight: 76,
+        this.load.spritesheet("inimigoTwiter", "src/assets/twitter-direita.png", {
+          frameWidth: 76,
+          frameHeight: 76,
         });
+
+        // this.load.spritesheet("inimigo", "src/assets/twitter-direita.png", {
+        //     frameWidth: 76,
+        //     frameHeight: 76,
+        // });
         this.load.spritesheet("inimigoFace", "src/assets/face-direita.png", {
           frameWidth: 76,
           frameHeight: 76,
@@ -63,5 +74,6 @@ export default class BootScene extends Phaser.Scene {
   
     create(){
       this.scene.start("Menu")
+      // this.scene.start("VitoriaFacebook")
   }}
   
