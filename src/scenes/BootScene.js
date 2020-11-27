@@ -62,6 +62,12 @@ export default class BootScene extends Phaser.Scene {
           frameHeight: 76,
         });
 
+        this.load.spritesheet("inimigoInstagram", "src/assets/insta-direita.png", {
+          frameWidth: 76,
+          frameHeight: 76,
+        });
+
+
         // this.load.spritesheet("inimigo", "src/assets/twitter-direita.png", {
         //     frameWidth: 76,
         //     frameHeight: 76,
@@ -73,7 +79,7 @@ export default class BootScene extends Phaser.Scene {
     }
   
     create(){
-      this.scene.start("Menu")
+      this.scene.start("FaseInstagram")
       // this.scene.start("VitoriaFacebook")
   }}
   

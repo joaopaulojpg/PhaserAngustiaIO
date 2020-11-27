@@ -1,9 +1,8 @@
-
-export default class FaseTwiter extends Phaser.Scene {
+export default class FaseWhatsapp extends Phaser.Scene {
     constructor() {
-        super("FaseTwiter");
+        super("FaseWhatsapp");
         this.player;
-        this.inimigoTwiter;
+        this.inimigoWhatsapp;
 
         this.life = 1
         this.golpeesq;
@@ -52,7 +51,7 @@ create() {
     const map = this.make.tilemap({ key: "map2" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(1300, 300, 'star');
+    this.star = this.physics.add.sprite(920, 90, 'star');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
       
@@ -78,9 +77,9 @@ create() {
   
     ///// AQUII
     this.player = this.physics.add.sprite(0, 0, 'player');
-    this.inimigoTwiter = this.physics.add.sprite(400, 90, 'inimigoTwiter');
-    this.inimigoTwiter2 = this.physics.add.sprite(1000, 0, 'inimigoTwiter');
-    this.inimigoTwiter3 = this.physics.add.sprite(1200, 10, 'inimigoTwiter');
+    this.inimigoWhatsapp = this.physics.add.sprite(400, 90, 'inimigoWhatsapp');
+    this.inimigoWhatsapp2 = this.physics.add.sprite(1000, 0, 'inimigoWhatsapp');
+    this.inimigoWhatsapp3 = this.physics.add.sprite(1500, 950, 'inimigoWhatsapp');
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -106,21 +105,21 @@ create() {
     );
     
     // inimigo.body.collideWorldBounds = true;
-    this.inimigoTwiter.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter, this.player);
+    this.inimigoWhatsapp.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoWhatsapp, this.colisao);
+    // this.physics.add.collider(this.inimigoWhatsapp, this.player);
 
 
-    this.inimigoTwiter2.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter2, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter2, this.player);
+    this.inimigoWhatsapp2.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoWhatsapp2, this.colisao);
+    // this.physics.add.collider(this.inimigoWhatsapp2, this.player);
 
-    this.inimigoTwiter3.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter3, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter3, this.player);
+    this.inimigoWhatsapp3.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoWhatsapp3, this.colisao);
+    // this.physics.add.collider(this.inimigoWhatsapp3, this.player);
 
     this.physics.add.collider(
-      this.inimigoTwiter,
+      this.inimigoWhatsapp,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -128,7 +127,7 @@ create() {
       this
     );
     this.physics.add.collider(
-      this.inimigoTwiter2,
+      this.inimigoWhatsapp2,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -136,7 +135,7 @@ create() {
       this
     );
     this.physics.add.collider(
-      this.inimigoTwiter3,
+      this.inimigoWhatsapp3,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -174,23 +173,23 @@ create() {
   
   
       anims.create({
-        key: "fleft", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "whatleft", 
+        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
   
       anims.create({
-        key: "fright", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "whatright", 
+        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
   
       anims.create({
-        key: "ffront", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "whatfront", 
+        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
 
@@ -234,37 +233,63 @@ update() {
       
      
   
-    this.aproximaInimigo(this.inimigoTwiter);
-    this.aproximaInimigo(this.inimigoTwiter2);
-    this.aproximaInimigo(this.inimigoTwiter3);
+    this.aproximaInimigo(this.inimigoWhatsapp);
+    this.aproximaInimigo(this.inimigoWhatsapp2);
+    this.aproximaInimigo(this.inimigoWhatsapp3);
   
 
 }   
+
+collectStar (player, star)
+{
+    star.disableBody(true, true);
+
+    score += 10;
+    scoreText.setText('Score: ' + score);
+
+    if (stars.countActive(true) === 0)
+    {
+        stars.children.iterate(function (child) {
+
+            child.enableBody(true, child.x, 0, true, true);
+
+        });
+
+        var x = (player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+
+        var bomb = bombs.create(x, 16, 'bomb');
+        bomb.setBounce(1);
+        bomb.setCollideWorldBounds(true);
+        bomb.setVelocity(Phaser.Math.Between(-200, 200), 20);
+
+    }
+}
+
  aproximaInimigo(e){
 
     // Faz com que ele fique parado
-    // this.inimigoTwiter.setVelocityX(-100);
-    // this.inimigoTwiter.anims.play("ileft", true)
+    // this.inimigoWhatsapp.setVelocityX(-100);
+    // this.inimigoWhatsapp.anims.play("ileft", true)
 
     if(this.player.body.position.y < e.body.position.y) {
-      e.body.setVelocityY(-95);
+      e.body.setVelocityY(-60);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.y > e.body.position.y) {
-      e.body.setVelocityY(95);
+      e.body.setVelocityY(60);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.x != e.body.position.x) {
 
       if(this.player.body.position.x < e.body.position.x) {
-        e.body.setVelocityX(-95);
-        e.anims.play("fleft", true)
+        e.body.setVelocityX(-60);
+        e.anims.play("whatleft", true)
         e.flipX = true;
       }
 
       if(this.player.body.position.x > e.body.position.x) {
-        e.body.setVelocityX(95);
-        e.anims.play("fright", true)
+        e.body.setVelocityX(60);
+        e.anims.play("whatright", true)
         e.flipX = false;
       }
 
@@ -278,7 +303,7 @@ derrotaPage() {
 }
 vitoriaPage() {
   // console.log('ganhamu')
-  this.scene.start("VitoriaTwiter");
+  this.scene.start("VitoriaWhatsapp");
 }
 
 hitEnemy() {

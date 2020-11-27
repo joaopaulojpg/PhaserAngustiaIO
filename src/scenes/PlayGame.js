@@ -73,11 +73,11 @@ create() {
   
     // this.colisao = this.physics.add.staticGroup();
   
-    // player   = this.physics.add.sprite(400,900, "player");
+    // player   = this.physics.add.sprite(400,350, "player");
   
     ///// AQUII
     this.player = this.physics.add.sprite(0, 0, 'player');
-    // this.inimigo = this.physics.add.sprite(400, 90, 'inimigo');
+    // this.inimigo = this.physics.add.sprite(400, 35, 'inimigo');
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -94,7 +94,7 @@ create() {
   
     this.physics.add.collider(this.player, this.star);
     
-    this.inimigo = this.physics.add.sprite(400, 90, 'inimigoFace');
+    this.inimigo = this.physics.add.sprite(500, 35, 'inimigoFace');
     this.inimigo.setGravityY(300);
     this.inimigo.setCollideWorldBounds(true);
 
@@ -104,55 +104,55 @@ create() {
     this.inimigo2.setCollideWorldBounds(true);
 
 
-    this.inimigo3 = this.physics.add.sprite(1300, 300, 'inimigoFace');
+    this.inimigo3 = this.physics.add.sprite(1400, 300, 'inimigoFace');
     this.inimigo3.setGravityY(300);
     this.inimigo3.setCollideWorldBounds(true);
 
     
-    this.inimigo4 = this.physics.add.sprite(1100, 90, 'inimigoFace');
+    this.inimigo4 = this.physics.add.sprite(1100, 35, 'inimigoFace');
     this.inimigo4.setGravityY(300);
     this.inimigo4.setCollideWorldBounds(true);
 
 
 
     this.physics.add.collider(this.inimigo, this.colisao);
-    this.physics.add.collider(this.inimigo, this.player);
+    // this.physics.add.collider(this.inimigo, this.player);
     this.physics.add.collider(this.inimigo2, this.colisao);
-    this.physics.add.collider(this.inimigo2, this.player);
+    // this.physics.add.collider(this.inimigo2, this.player);
     this.physics.add.collider(this.inimigo3, this.colisao);
-    this.physics.add.collider(this.inimigo3, this.player);
+    // this.physics.add.collider(this.inimigo3, this.player);
     this.physics.add.collider(this.inimigo4, this.colisao);
-    this.physics.add.collider(this.inimigo4, this.player);
+    // this.physics.add.collider(this.inimigo4, this.player);
 
 
     // this.physics.add.collider(this.inimigo2, this.player, this.derrotaPage,null,this);
-    this.physics.add.overlap(
-      this.player,
+    this.physics.add.collider(
       this.inimigo,
+      this.player,
       //funcao para matar o player
       this.derrotaPage,
       null,
       this
     );
-    this.physics.add.overlap(
+    this.physics.add.collider(
+      this.inimigo2,
         this.player,
-        this.inimigo2,
         //funcao para matar o player
         this.derrotaPage,
         null,
         this
     );
-    this.physics.add.overlap(
+    this.physics.add.collider(
+      this.inimigo3,
         this.player,
-        this.inimigo3,
         //funcao para matar o player
         this.derrotaPage,
         null,
         this
     );
-    this.physics.add.overlap(
-      this.player,
+    this.physics.add.collider(
       this.inimigo4,
+      this.player,
       //funcao para matar o player
       this.derrotaPage,
       null,
@@ -320,13 +320,13 @@ update() {
 
     if(this.player.body.position.y > e.body.position.y && e.body.blocked.down) {
       if(e.body.blocked.left) {
-        e.body.setVelocityX(15);
+        e.body.setVelocityX(35);
       }
       if(e.body.blocked.right) {
-        e.body.setVelocityX(-30);
+        e.body.setVelocityX(-35);
       }
     }else if((this.player.body.position.y < e.body.position.y) && this.player.body.down){
-      e.body.setVelocityY(-400);
+      e.body.setVelocityY(-280);
 
     }else {
 
@@ -337,22 +337,22 @@ update() {
       if(!e.body.blocked.up) {
         if(e.body.blocked.left && (this.player.body.position.y < e.body.position.y)) {
             e.body.setVelocityX(-30);
-            e.body.setVelocityY(-310);
+            e.body.setVelocityY(-280);
         }
 
         if(e.body.blocked.right && (this.player.body.position.y > e.body.position.y)) {
           e.body.setVelocityX(30);
-          e.body.setVelocityY(-310);
+          e.body.setVelocityY(-280);
         }
         if(e.body.blocked.left && (this.player.body.position.x < e.body.position.x)) {
-          e.body.setVelocityY(-310);
+          e.body.setVelocityY(-280);
         }
         if(e.body.blocked.left && (this.player.body.position.x > e.body.position.x)) {
-          e.body.setVelocityY(-310);
+          e.body.setVelocityY(-280);
         }
 
         if((this.player.body.position.y < e.body.position.y) && e.body.blocked.down && (e.body.blocked.left || e.body.blocked.right)) {
-          e.body.setVelocityY(-310);
+          e.body.setVelocityY(-280);
         }
 
         if(this.player.body.position.x < e.body.position.x) {
@@ -377,7 +377,7 @@ update() {
           }else {
 
             if((this.player.body.position.y < e.body.position.y) && e.body.blocked.down && (e.body.blocked.left || e.body.blocked.right)) {
-              e.body.setVelocityY(-310);
+              e.body.setVelocityY(-280);
             }
 
             if(e.body.blocked.down) {

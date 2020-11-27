@@ -1,9 +1,9 @@
 
-export default class FaseTwiter extends Phaser.Scene {
+export default class FaseInstagram extends Phaser.Scene {
     constructor() {
-        super("FaseTwiter");
+        super("FaseInstagram");
         this.player;
-        this.inimigoTwiter;
+        this.inimigoInstagram;
 
         this.life = 1
         this.golpeesq;
@@ -52,7 +52,7 @@ create() {
     const map = this.make.tilemap({ key: "map2" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(1300, 300, 'star');
+    this.star = this.physics.add.sprite(920, 90, 'star');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
       
@@ -78,9 +78,9 @@ create() {
   
     ///// AQUII
     this.player = this.physics.add.sprite(0, 0, 'player');
-    this.inimigoTwiter = this.physics.add.sprite(400, 90, 'inimigoTwiter');
-    this.inimigoTwiter2 = this.physics.add.sprite(1000, 0, 'inimigoTwiter');
-    this.inimigoTwiter3 = this.physics.add.sprite(1200, 10, 'inimigoTwiter');
+    this.inimigoInstagram = this.physics.add.sprite(400, 90, 'inimigoInstagram');
+    this.inimigoInstagram2 = this.physics.add.sprite(1000, 0, 'inimigoInstagram');
+    this.inimigoInstagram3 = this.physics.add.sprite(1500, 950, 'inimigoInstagram');
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -106,21 +106,21 @@ create() {
     );
     
     // inimigo.body.collideWorldBounds = true;
-    this.inimigoTwiter.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter, this.player);
+    this.inimigoInstagram.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoInstagram, this.colisao);
+    // this.physics.add.collider(this.inimigoInstagram, this.player);
 
 
-    this.inimigoTwiter2.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter2, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter2, this.player);
+    this.inimigoInstagram2.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoInstagram2, this.colisao);
+    // this.physics.add.collider(this.inimigoInstagram2, this.player);
 
-    this.inimigoTwiter3.setCollideWorldBounds(true);
-    this.physics.add.collider(this.inimigoTwiter3, this.colisao);
-    // this.physics.add.collider(this.inimigoTwiter3, this.player);
+    this.inimigoInstagram3.setCollideWorldBounds(true);
+    // this.physics.add.collider(this.inimigoInstagram3, this.colisao);
+    // this.physics.add.collider(this.inimigoInstagram3, this.player);
 
     this.physics.add.collider(
-      this.inimigoTwiter,
+      this.inimigoInstagram,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -128,7 +128,7 @@ create() {
       this
     );
     this.physics.add.collider(
-      this.inimigoTwiter2,
+      this.inimigoInstagram2,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -136,7 +136,7 @@ create() {
       this
     );
     this.physics.add.collider(
-      this.inimigoTwiter3,
+      this.inimigoInstagram3,
       this.player,
       //funcao para matar o player
       this.derrotaPage,
@@ -174,23 +174,23 @@ create() {
   
   
       anims.create({
-        key: "fleft", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "insleft", 
+        frames: anims.generateFrameNames("inimigoInstagram", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
   
       anims.create({
-        key: "fright", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "insright", 
+        frames: anims.generateFrameNames("inimigoInstagram", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
   
       anims.create({
-        key: "ffront", 
-        frames: anims.generateFrameNames("inimigoTwiter", {start: 0, end: 1}),
-        frameRate: 20,
+        key: "insfront", 
+        frames: anims.generateFrameNames("inimigoInstagram", {start: 0, end: 1}),
+        frameRate: 8,
         repeat: -1
       })
 
@@ -234,37 +234,37 @@ update() {
       
      
   
-    this.aproximaInimigo(this.inimigoTwiter);
-    this.aproximaInimigo(this.inimigoTwiter2);
-    this.aproximaInimigo(this.inimigoTwiter3);
+    this.aproximaInimigo(this.inimigoInstagram);
+    this.aproximaInimigo(this.inimigoInstagram2);
+    this.aproximaInimigo(this.inimigoInstagram3);
   
 
 }   
  aproximaInimigo(e){
 
     // Faz com que ele fique parado
-    // this.inimigoTwiter.setVelocityX(-100);
-    // this.inimigoTwiter.anims.play("ileft", true)
+    // this.inimigoInstagram.setVelocityX(-100);
+    // this.inimigoInstagram.anims.play("ileft", true)
 
     if(this.player.body.position.y < e.body.position.y) {
-      e.body.setVelocityY(-95);
+      e.body.setVelocityY(-60);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.y > e.body.position.y) {
-      e.body.setVelocityY(95);
+      e.body.setVelocityY(60);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.x != e.body.position.x) {
 
       if(this.player.body.position.x < e.body.position.x) {
-        e.body.setVelocityX(-95);
-        e.anims.play("fleft", true)
+        e.body.setVelocityX(-60);
+        e.anims.play("insleft", true)
         e.flipX = true;
       }
 
       if(this.player.body.position.x > e.body.position.x) {
-        e.body.setVelocityX(95);
-        e.anims.play("fright", true)
+        e.body.setVelocityX(60);
+        e.anims.play("insright", true)
         e.flipX = false;
       }
 
@@ -278,7 +278,7 @@ derrotaPage() {
 }
 vitoriaPage() {
   // console.log('ganhamu')
-  this.scene.start("VitoriaTwiter");
+  this.scene.start("VitoriaInstagram");
 }
 
 hitEnemy() {

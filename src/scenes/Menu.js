@@ -58,6 +58,7 @@ export default class Menu extends Phaser.Scene {
           //Adicionar o clique do botao
          
           btnPlay.on("pointerdown", () => this.scene.start("FaseTwiter"));
+          // btnPlay.on("pointerdown", () => this.scene.start("PlayGame"));
         //   btnPlay.on("pointerdown", () => this.music.stop() );
           btnRegras.on("pointerdown", () => this.scene.start("controles"));
         //   btnRegras.on("pointerdown", () => this.music.stop() );
