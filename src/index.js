@@ -9,12 +9,15 @@ import FaseTwiter from "./scenes/FaseTwiter";
 import FaseInstagram from "./scenes/FaseInstagram";
 import VitoriaFacebook from "./scenes/VitoriaFacebook";
 import VitoriaTwiter from "./scenes/VitoriaTwiter";
+import VitoriaInstagram from "./scenes/VitoriaInstagram";
+import FaseWhatsapp from "./scenes/FaseWhatsapp";
+
 
 const config = {
     type: Phaser.AUTO,
     parent: "phaser-example",
     width: 1440,
-    height: 960,
+    height: 605,
  
     scale: {
       // Fit to window
@@ -32,15 +35,17 @@ const config = {
       PlayGame,
       FaseTwiter,
       FaseInstagram,
+      FaseWhatsapp,
       vitoria,
       derrota,
       VitoriaFacebook,
-      VitoriaTwiter
+      VitoriaTwiter,
+      VitoriaInstagram
     ],
     physics: {
       default: "arcade",
       arcade: {
-        debug: false,
+        debug: true,
         gravity: {
           gravity: { y: 500 },
         },

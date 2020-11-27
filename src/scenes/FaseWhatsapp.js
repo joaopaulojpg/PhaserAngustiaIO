@@ -150,45 +150,31 @@ create() {
       const anims = this.anims
   
       anims.create({
-        key: "left", 
-        frames: anims.generateFrameNames("player", {start: 8, end: 15}),
+        key: "Nleft", 
+        frames: anims.generateFrameNames("player", {start: 16, end: 23}),
         frameRate: 15,
         repeat: -1,
         
       })
   
       anims.create({
-        key: "right", 
-        frames: anims.generateFrameNames("player", {start: 8, end: 15}),
+        key: "Nright", 
+        frames: anims.generateFrameNames("player", {start: 16, end: 23}),
         frameRate: 15,
         repeat: -1
       })
   
       anims.create({
-        key: "front", 
-        frames: anims.generateFrameNames("player", {start: 0, end: 3}),
+        key: "Nfront", 
+        frames: anims.generateFrameNames("player", {start: 4, end: 7}),
         frameRate: 5,
         repeat: -1
       })
   
   
       anims.create({
-        key: "whatleft", 
-        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
-        frameRate: 8,
-        repeat: -1
-      })
-  
-      anims.create({
-        key: "whatright", 
-        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
-        frameRate: 8,
-        repeat: -1
-      })
-  
-      anims.create({
         key: "whatfront", 
-        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 1}),
+        frames: anims.generateFrameNames("inimigoWhatsapp", {start: 0, end: 3}),
         frameRate: 8,
         repeat: -1
       })
@@ -221,23 +207,22 @@ update() {
   
       if (this.cursors.left.isDown) {
         // this.player.body.setVelocityX(-160);
-        this.player.anims.play("left", true)
+        this.player.anims.play("Nleft", true)
       
       } 
       else if (this.cursors.right.isDown) {
-        this.player.anims.play("right", true)
+        this.player.anims.play("Nright", true)
       }
        else {
-        this.player.anims.play("front", true)
+        this.player.anims.play("Nfront", true)
       } 
       
      
   
-    this.aproximaInimigo(this.inimigoWhatsapp);
-    this.aproximaInimigo(this.inimigoWhatsapp2);
-    this.aproximaInimigo(this.inimigoWhatsapp3);
-  
-
+    // this.aproximaInimigo(this.inimigoWhatsapp);
+    // this.aproximaInimigo(this.inimigoWhatsapp2);
+    // this.aproximaInimigo(this.inimigoWhatsapp3);
+    this.criaInimigo()
 }   
 
 collectStar (player, star)
@@ -271,30 +256,52 @@ collectStar (player, star)
     // this.inimigoWhatsapp.setVelocityX(-100);
     // this.inimigoWhatsapp.anims.play("ileft", true)
 
-    if(this.player.body.position.y < e.body.position.y) {
-      e.body.setVelocityY(-60);
-      // e.anims.play("ifront", true)
-    }
-    if(this.player.body.position.y > e.body.position.y) {
-      e.body.setVelocityY(60);
-      // e.anims.play("ifront", true)
-    }
-    if(this.player.body.position.x != e.body.position.x) {
+    // if(this.player.body.position.y < e.body.position.y) {
+    //   e.body.setVelocityY(-60);
+    //   // e.anims.play("ifront", true)
+    // }
+    // if(this.player.body.position.y > e.body.position.y) {
+    //   e.body.setVelocityY(60);
+    //   // e.anims.play("ifront", true)
+    // }
+    // if(this.player.body.position.x != e.body.position.x) {
 
-      if(this.player.body.position.x < e.body.position.x) {
-        e.body.setVelocityX(-60);
-        e.anims.play("whatleft", true)
-        e.flipX = true;
-      }
+    //   if(this.player.body.position.x < e.body.position.x) {
+        e.body.setVelocityY(400);
+        e.anims.play("whatfront", true)
+      // }
 
-      if(this.player.body.position.x > e.body.position.x) {
-        e.body.setVelocityX(60);
-        e.anims.play("whatright", true)
-        e.flipX = false;
-      }
+      // if(this.player.body.position.x > e.body.position.x) {
+      //   e.body.setVelocityX(60);
+      //   e.anims.play("whatfront", true)
+      //   e.flipX = false;
+      // }
 
-    }
+    // }
    
+}
+
+criaInimigo(){
+
+  //  Cria inimigo dentro do grupo inimigos
+  let inimigoWhatsapp = this.physics.add.sprite(600, 90, 'inimigoWhatsapp');
+  inimigoWhatsapp.setCollideWorldBounds(true);
+
+  this.physics.add.collider(
+    inimigoWhatsapp,
+    this.player,
+    //funcao para matar o player
+    this.derrotaPage,
+    null,
+    this
+  );
+
+  inimigoWhatsapp.body.setVelocityY(400);
+  inimigoWhatsapp.anims.play("whatfront", true)
+
+  setTimeout(() => this.criaInimigo(), 10000)
+
+
 }
 
 derrotaPage() {

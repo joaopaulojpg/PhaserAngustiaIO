@@ -9,10 +9,15 @@ export default class VitoriaInstagram extends Phaser.Scene {
     
     create()
       {
-        this.titulo = this.add.text(180,60, "Você deixou de postar stories do seu gato!! Parabéns", {
-            fontSize: "45px",
+        this.titulo = this.add.text(90,60, "Você saiu de um aplicativo onde passava mais de 6 horas por dia!", {
+            fontSize: "35px",
             fill: "#4A86E8",
         });
+
+        this.titulo = this.add.text(90,90, "Você ganhou seu corpo, agora ganhe sua liberdade", {
+          fontSize: "35px",
+          fill: "#4A86E8",
+      });
     
         let btnPlay = this.add.image(550,370,"removeInstagram").setOrigin(0,0);
         //   btnPlay.setScale(0.35)

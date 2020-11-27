@@ -26,7 +26,7 @@ export default class BootScene extends Phaser.Scene {
 
       this.load.image("fundo", "src/assets/background2.jpeg");
 
-      this.load.image("inicioImg", "src/assets/pagina-inicial.png");
+      this.load.image("inicioImg", "src/assets/pagina-menu.jpeg");
 
         //   this.load.image("teste", "src/assets/img/imginic.png");
         //   this.load.image("teclas", "src/assets/img/teclass.png");
@@ -67,6 +67,14 @@ export default class BootScene extends Phaser.Scene {
           frameHeight: 76,
         });
 
+        
+        this.load.spritesheet("inimigoWhatsapp", "src/assets/whatsapp.png", {
+          frameWidth: 76,
+          frameHeight: 76,
+        });
+
+        
+
 
         // this.load.spritesheet("inimigo", "src/assets/twitter-direita.png", {
         //     frameWidth: 76,
@@ -79,7 +87,7 @@ export default class BootScene extends Phaser.Scene {
     }
   
     create(){
-      this.scene.start("FaseInstagram")
+      this.scene.start("VitoriaInstagram")
       // this.scene.start("VitoriaFacebook")
   }}
   

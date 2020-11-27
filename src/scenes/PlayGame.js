@@ -76,7 +76,7 @@ create() {
     // player   = this.physics.add.sprite(400,350, "player");
   
     ///// AQUII
-    this.player = this.physics.add.sprite(0, 0, 'player');
+    this.player = this.physics.add.sprite(0, 600, 'player');
     // this.inimigo = this.physics.add.sprite(400, 35, 'inimigo');
 
     this.player.setBounce(0.2);
@@ -104,12 +104,12 @@ create() {
     this.inimigo2.setCollideWorldBounds(true);
 
 
-    this.inimigo3 = this.physics.add.sprite(1400, 300, 'inimigoFace');
+    this.inimigo3 = this.physics.add.sprite(1430, 300, 'inimigoFace');
     this.inimigo3.setGravityY(300);
     this.inimigo3.setCollideWorldBounds(true);
 
     
-    this.inimigo4 = this.physics.add.sprite(1100, 35, 'inimigoFace');
+    this.inimigo4 = this.physics.add.sprite(1200, 80, 'inimigoFace');
     this.inimigo4.setGravityY(300);
     this.inimigo4.setCollideWorldBounds(true);
 
