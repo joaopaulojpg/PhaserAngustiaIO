@@ -4,7 +4,7 @@ export default class VitoriaInstagram extends Phaser.Scene {
     }
   
     preload() {
-        this.load.image("removeInstagram", "src/assets/removeTwiter.jpeg");
+        this.load.image("removeInstagram", "src/assets/vitoriaInsta.png");
     }
     
     create()
@@ -19,22 +19,22 @@ export default class VitoriaInstagram extends Phaser.Scene {
           fill: "#4A86E8",
       });
     
-        let btnPlay = this.add.image(550,370,"removeInstagram").setOrigin(0,0);
+        let btnPlay = this.add.image(550,170,"removeInstagram").setOrigin(0,0);
         //   btnPlay.setScale(0.35)
         btnPlay.setDepth(0)
-            let buttonTextOk = this.add.text(630,550, "Ok", {
+            let buttonTextOk = this.add.text(630,350, "Ok", {
             fontSize: "25px",
             fill: "#4A86E8",
         });
         buttonTextOk.setInteractive();
 
-        let buttonCancel = this.add.text(730,550, "Cancelar", {
+        let buttonCancel = this.add.text(730,350, "Cancelar", {
             fontSize: "25px",
             fill: "#4A86E8",
         });
         buttonCancel.setInteractive();
 
-        buttonTextOk.on("pointerup", () => this.scene.start("FaseInstagram"));
+        buttonTextOk.on("pointerup", () => this.scene.start("FaseWhatsapp"));
         buttonCancel.on("pointerup", () => this.scene.start("Menu"));
       }
   }

@@ -47,11 +47,10 @@ preload(){
 }
 
 create() {
-
     const map = this.make.tilemap({ key: "map2" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(920, 90, 'star');
+    this.star = this.physics.add.sprite(1100, 400, 'starWhats');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
       
@@ -76,7 +75,12 @@ create() {
     // player   = this.physics.add.sprite(400,900, "player");
   
     ///// AQUII
-    this.player = this.physics.add.sprite(0, 0, 'player');
+    this.player = this.physics.add.sprite(0, 300, 'player');
+    this.player.body.setSize(32, 76);
+    // this.player.body.setOffset(60, 10);
+
+
+
     this.inimigoWhatsapp = this.physics.add.sprite(400, 90, 'inimigoWhatsapp');
     this.inimigoWhatsapp2 = this.physics.add.sprite(1000, 0, 'inimigoWhatsapp');
     this.inimigoWhatsapp3 = this.physics.add.sprite(1500, 950, 'inimigoWhatsapp');
@@ -91,7 +95,15 @@ create() {
   
   
     this.physics.add.collider(this.player, this.colisao);
-    this.physics.add.collider(this.player, this.espinhos);
+    // this.physics.add.collider(this.player, this.espinhos);
+    this.physics.add.collider(
+      this.player,
+      this.espinhos,
+      //funcao para matar o player
+      this.derrotaPage,
+      null,
+      this
+    );
     this.physics.add.collider(this.star, this.colisao);
   
 
@@ -184,9 +196,12 @@ create() {
     this.physics.world.setBounds();
     camera.startFollow(this.player,true);
     camera.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-    
+  
+  
+    this.criaInimigo(100)
 }
 update() {
+
     const prevVelocity = this.player.body.velocity.clone();
     this.player.body.setVelocityX(0);
   
@@ -222,7 +237,6 @@ update() {
     // this.aproximaInimigo(this.inimigoWhatsapp);
     // this.aproximaInimigo(this.inimigoWhatsapp2);
     // this.aproximaInimigo(this.inimigoWhatsapp3);
-    this.criaInimigo()
 }   
 
 collectStar (player, star)
@@ -281,10 +295,10 @@ collectStar (player, star)
    
 }
 
-criaInimigo(){
+criaInimigo(x){
 
   //  Cria inimigo dentro do grupo inimigos
-  let inimigoWhatsapp = this.physics.add.sprite(600, 90, 'inimigoWhatsapp');
+  let inimigoWhatsapp = this.physics.add.sprite(x, 90, 'inimigoWhatsapp');
   inimigoWhatsapp.setCollideWorldBounds(true);
 
   this.physics.add.collider(
@@ -297,15 +311,18 @@ criaInimigo(){
   );
 
   inimigoWhatsapp.body.setVelocityY(400);
-  inimigoWhatsapp.anims.play("whatfront", true)
+  inimigoWhatsapp.anims.play("whatfront", true)  
 
-  setTimeout(() => this.criaInimigo(), 10000)
-
+  setTimeout(() => this.criaInimigo(this.player.body.position.x), 2000)
+  setTimeout(() => this.criaInimigo(this.player.body.position.x+100), 3000)
+  // setTimeout(() => this.criaInimigo(this.player.body.position.x-30), 2000)
+  // setTimeout(() => this.criaInimigo(this.player.body.position.x+300), 2000)
 
 }
 
 derrotaPage() {
-  this.scene.start("controles")
+  
+  this.scene.start("DerrotaWhatsapp")
   // alert('bateu')
 }
 vitoriaPage() {

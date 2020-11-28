@@ -11,7 +11,11 @@ import VitoriaFacebook from "./scenes/VitoriaFacebook";
 import VitoriaTwiter from "./scenes/VitoriaTwiter";
 import VitoriaInstagram from "./scenes/VitoriaInstagram";
 import FaseWhatsapp from "./scenes/FaseWhatsapp";
-
+import DerrotaFace from "./scenes/DerrotaFace";
+import DerrotaTwiter from "./scenes/DerrotaTwiter";
+import DerrotaInsta from "./scenes/DerrotaInsta";
+import DerrotaWhatsapp from "./scenes/DerrotaWhatsapp";
+import Fim from "./scenes/Fim";
 
 const config = {
     type: Phaser.AUTO,
@@ -40,12 +44,17 @@ const config = {
       derrota,
       VitoriaFacebook,
       VitoriaTwiter,
-      VitoriaInstagram
+      VitoriaInstagram,
+      DerrotaFace,
+      DerrotaTwiter,
+      DerrotaInsta,
+      DerrotaWhatsapp,
+      Fim
     ],
     physics: {
       default: "arcade",
       arcade: {
-        debug: true,
+        debug: false,
         gravity: {
           gravity: { y: 500 },
         },

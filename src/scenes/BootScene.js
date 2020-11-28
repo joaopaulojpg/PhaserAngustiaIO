@@ -13,7 +13,7 @@ export default class BootScene extends Phaser.Scene {
       this.loadAudio();
     }
     loadAudio(){
-    //   this.load.audio("musica", "src/assets/audio/music.wav")
+      this.load.audio("musica", "src/assets/musica-angustia.mp3")
     //   this.load.audio("pdamage", "src/assets/audio/PlayerDamage.wav")
     //   this.load.audio("edamage", "src/assets/audio/Punch_04.wav")
     }
@@ -53,6 +53,24 @@ export default class BootScene extends Phaser.Scene {
             margin:-10
         });
 
+        this.load.spritesheet("starFace", "src/assets/icon-facebook.png", {
+            frameWidth: 76,
+            frameHeight: 76,
+            margin:-10
+        });
+
+      this.load.spritesheet("starInsta", "src/assets/icon-insta.png", {
+          frameWidth: 76,
+          frameHeight: 76,
+          margin:-10
+      });
+
+      this.load.spritesheet("starWhats", "src/assets/icon-whats.png", {
+          frameWidth: 76,
+          frameHeight: 76,
+          margin:-10
+      });
+
         //   this.load.spritesheet("enemyfinal","src/assets/img/enemyfinal1.png",{
         //     frameWidth: 64.15,
         //     frameHeight: 62,
@@ -87,7 +105,8 @@ export default class BootScene extends Phaser.Scene {
     }
   
     create(){
-      this.scene.start("VitoriaInstagram")
-      // this.scene.start("VitoriaFacebook")
+      // this.scene.start("Fim")
+
+      this.scene.start("Menu")
   }}
   

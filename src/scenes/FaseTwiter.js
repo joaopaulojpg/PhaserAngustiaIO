@@ -78,6 +78,8 @@ create() {
   
     ///// AQUII
     this.player = this.physics.add.sprite(0, 0, 'player');
+    this.player.body.setSize(32, 76);
+
     this.inimigoTwiter = this.physics.add.sprite(400, 90, 'inimigoTwiter');
     this.inimigoTwiter2 = this.physics.add.sprite(1000, 0, 'inimigoTwiter');
     this.inimigoTwiter3 = this.physics.add.sprite(1200, 10, 'inimigoTwiter');
@@ -92,7 +94,15 @@ create() {
   
   
     this.physics.add.collider(this.player, this.colisao);
-    this.physics.add.collider(this.player, this.espinhos);
+    // this.physics.add.collider(this.player, this.espinhos);
+    this.physics.add.collider(
+      this.player,
+      this.espinhos,
+      //funcao para matar o player
+      this.derrotaPage,
+      null,
+      this
+    );
     this.physics.add.collider(this.star, this.colisao);
   
 
@@ -273,7 +283,7 @@ update() {
 }
 
 derrotaPage() {
-  this.scene.start("controles")
+  this.scene.start("DerrotaTwiter")
   // alert('bateu')
 }
 vitoriaPage() {

@@ -50,11 +50,12 @@ preload(){
 
 
 create() {
+  this.sound.add("musica", {loop: true});
 
     const map = this.make.tilemap({ key: "map" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(1300, 300, 'star');
+    this.star = this.physics.add.sprite(1300, 300, 'starFace');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
     
@@ -78,6 +79,7 @@ create() {
     ///// AQUII
     this.player = this.physics.add.sprite(0, 600, 'player');
     // this.inimigo = this.physics.add.sprite(400, 35, 'inimigo');
+    this.player.body.setSize(32, 76);
 
     this.player.setBounce(0.2);
     this.player.setCollideWorldBounds(true);
@@ -267,7 +269,7 @@ create() {
 }
 
 derrotaPage() {
-  this.scene.start("controles")
+  this.scene.start("DerrotaFace")
   // alert('bateu')
 }
 vitoriaPage() {

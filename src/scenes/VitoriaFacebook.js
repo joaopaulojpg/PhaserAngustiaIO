@@ -15,16 +15,16 @@ export default class vitoriaFacebook extends Phaser.Scene {
             fill: "#4A86E8",
           });
         
-          let btnPlay = this.add.image(550,370,"removeFacebook").setOrigin(0,0);
+          let btnPlay = this.add.image(550,170,"removeFacebook").setOrigin(0,0);
         //   btnPlay.setScale(0.35)
           btnPlay.setDepth(0)
-          let buttonTextOk = this.add.text(630,550, "Ok", {
+          let buttonTextOk = this.add.text(630,350, "Ok", {
             fontSize: "25px",
             fill: "#4A86E8",
           });
           buttonTextOk.setInteractive();
 
-          let buttonCancel = this.add.text(730,550, "Cancelar", {
+          let buttonCancel = this.add.text(730,350, "Cancelar", {
             fontSize: "25px",
             fill: "#4A86E8",
           });

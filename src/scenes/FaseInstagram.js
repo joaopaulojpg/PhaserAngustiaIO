@@ -52,7 +52,7 @@ create() {
     const map = this.make.tilemap({ key: "map2" });
     this.add.image(0,0,"fundo").setOrigin(0,0);
 
-    this.star = this.physics.add.sprite(920, 90, 'star');
+    this.star = this.physics.add.sprite(920, 90, 'starInsta');
     this.star.setCollideWorldBounds(true);
     this.star.body.setGravityY(300);
       
@@ -77,7 +77,9 @@ create() {
     // player   = this.physics.add.sprite(400,900, "player");
   
     ///// AQUII
-    this.player = this.physics.add.sprite(0, 0, 'player');
+    this.player = this.physics.add.sprite(0, 400, 'player');
+    this.player.body.setSize(32, 76);
+
     this.inimigoInstagram = this.physics.add.sprite(400, 90, 'inimigoInstagram');
     this.inimigoInstagram2 = this.physics.add.sprite(1000, 0, 'inimigoInstagram');
     this.inimigoInstagram3 = this.physics.add.sprite(1500, 950, 'inimigoInstagram');
@@ -92,7 +94,15 @@ create() {
   
   
     this.physics.add.collider(this.player, this.colisao);
-    this.physics.add.collider(this.player, this.espinhos);
+    // this.physics.add.collider(this.player, this.espinhos);
+    this.physics.add.collider(
+      this.player,
+      this.espinhos,
+      //funcao para matar o player
+      this.derrotaPage,
+      null,
+      this
+    );
     this.physics.add.collider(this.star, this.colisao);
   
 
@@ -273,7 +283,7 @@ update() {
 }
 
 derrotaPage() {
-  this.scene.start("controles")
+  this.scene.start("DerrotaInsta")
   // alert('bateu')
 }
 vitoriaPage() {

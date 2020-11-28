@@ -4,7 +4,7 @@ export default class VitoriaTwiter extends Phaser.Scene {
     }
   
     preload() {
-        this.load.image("removeTwiter", "src/assets/removeTwiter.jpeg");
+        this.load.image("vitoriaTwiter", "src/assets/vitoriaTwiter.png");
 
     }
     
@@ -15,16 +15,16 @@ export default class VitoriaTwiter extends Phaser.Scene {
             fill: "#4A86E8",
           });
         
-          let btnPlay = this.add.image(550,370,"removeTwiter").setOrigin(0,0);
+          let btnPlay = this.add.image(550,170,"vitoriaTwiter").setOrigin(0,0);
         //   btnPlay.setScale(0.35)
           btnPlay.setDepth(0)
-          let buttonTextOk = this.add.text(630,550, "Ok", {
+          let buttonTextOk = this.add.text(630,350, "Ok", {
             fontSize: "25px",
             fill: "#4A86E8",
           });
           buttonTextOk.setInteractive();
 
-          let buttonCancel = this.add.text(730,550, "Cancelar", {
+          let buttonCancel = this.add.text(730,350, "Cancelar", {
             fontSize: "25px",
             fill: "#4A86E8",
           });
