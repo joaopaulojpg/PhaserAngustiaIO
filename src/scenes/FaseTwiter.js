@@ -85,7 +85,7 @@ create() {
     this.inimigoTwiter3 = this.physics.add.sprite(1200, 10, 'inimigoTwiter');
 
     this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    
     this.player.body.setGravityY(300);
     this.player.setBounce(0.2);
   
@@ -257,23 +257,23 @@ update() {
     // this.inimigoTwiter.anims.play("ileft", true)
 
     if(this.player.body.position.y < e.body.position.y) {
-      e.body.setVelocityY(-95);
+      e.body.setVelocityY(-120);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.y > e.body.position.y) {
-      e.body.setVelocityY(95);
+      e.body.setVelocityY(120);
       // e.anims.play("ifront", true)
     }
     if(this.player.body.position.x != e.body.position.x) {
 
       if(this.player.body.position.x < e.body.position.x) {
-        e.body.setVelocityX(-95);
+        e.body.setVelocityX(-120);
         e.anims.play("fleft", true)
         e.flipX = true;
       }
 
       if(this.player.body.position.x > e.body.position.x) {
-        e.body.setVelocityX(95);
+        e.body.setVelocityX(120);
         e.anims.play("fright", true)
         e.flipX = false;
       }

@@ -60,8 +60,8 @@ create() {
     this.star.body.setGravityY(300);
     
   
-    this.text = this.add.text(16, 16, 'Vida: 3', { fill: '#ffffff' });
-    this.text = this.add.text(100, 16, 'Dica: Zumbis não são inteligentes e são lentos, sentem dificuldades em subir nas plataformas', { fill: 'red' });
+    // this.text = this.add.text(16, 16, 'Vida: 3', { fill: '#ffffff' });
+    // this.text = this.add.text(100, 16, 'Dica: Zumbis não são inteligentes e são lentos, sentem dificuldades em subir nas plataformas', { fill: 'red' });
 
   
     const tileset = map.addTilesetImage("background2", "tiles");
@@ -94,26 +94,30 @@ create() {
     this.physics.add.collider(this.player, this.colisao);
     this.physics.add.collider(this.star, this.colisao);
   
-    this.physics.add.collider(this.player, this.star);
+    // this.physics.add.collider(this.player, this.star);
     
     this.inimigo = this.physics.add.sprite(500, 35, 'inimigoFace');
     this.inimigo.setGravityY(300);
     this.inimigo.setCollideWorldBounds(true);
+    this.inimigo.body.setSize(32, 76);
 
 
     this.inimigo2 = this.physics.add.sprite(800, 100, 'inimigoFace');
     this.inimigo2.setGravityY(300);
     this.inimigo2.setCollideWorldBounds(true);
+    this.inimigo2.body.setSize(32, 76);
 
 
     this.inimigo3 = this.physics.add.sprite(1430, 300, 'inimigoFace');
     this.inimigo3.setGravityY(300);
     this.inimigo3.setCollideWorldBounds(true);
+    this.inimigo3.body.setSize(32, 76);
 
     
     this.inimigo4 = this.physics.add.sprite(1200, 80, 'inimigoFace');
     this.inimigo4.setGravityY(300);
     this.inimigo4.setCollideWorldBounds(true);
+    this.inimigo4.body.setSize(32, 76);
 
 
 

@@ -12,7 +12,6 @@ export default class Menu extends Phaser.Scene {
     create()
       {
           this.add.image(0,0,"inicioImg").setOrigin(0,0);
-          this.sound.add("musica", {loop: true});
 
 
           
@@ -45,13 +44,13 @@ export default class Menu extends Phaser.Scene {
           //center the button text inside the ui button
           
         
-        //   this.music = this.sound.add('musica',{
+          this.music = this.sound.add('musica',{
           
-        //     volume : .05,
-        //     loop : true,
-        // });
+            volume : .05,
+            loop : true,
+        });
       
-            // this.music.play();
+            this.music.play();
   
           //Adicionar o clique do botao
          

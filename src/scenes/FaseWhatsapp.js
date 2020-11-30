@@ -39,6 +39,7 @@ export default class FaseWhatsapp extends Phaser.Scene {
         this.colisao
         this.mapa
         
+        this.vitoria_derrota = false
         
       }
 preload(){
@@ -77,6 +78,8 @@ create() {
     ///// AQUII
     this.player = this.physics.add.sprite(0, 300, 'player');
     this.player.body.setSize(32, 76);
+
+
     // this.player.body.setOffset(60, 10);
 
 
@@ -86,7 +89,7 @@ create() {
     this.inimigoWhatsapp3 = this.physics.add.sprite(1500, 950, 'inimigoWhatsapp');
 
     this.player.setBounce(0.2);
-    this.player.setCollideWorldBounds(true);
+    // this.player.setColliderWorldBounds(true);
     this.player.body.setGravityY(300);
     this.player.setBounce(0.2);
   
@@ -297,26 +300,27 @@ collectStar (player, star)
 
 criaInimigo(x){
 
-  //  Cria inimigo dentro do grupo inimigos
-  let inimigoWhatsapp = this.physics.add.sprite(x, 90, 'inimigoWhatsapp');
-  inimigoWhatsapp.setCollideWorldBounds(true);
+  if(!this.vitoria_derrota) {
+    //  Cria inimigo dentro do grupo inimigos
+    let inimigoWhatsapp = this.physics.add.sprite(x, 90, 'inimigoWhatsapp');
+    inimigoWhatsapp.setCollideWorldBounds(true);
 
-  this.physics.add.collider(
-    inimigoWhatsapp,
-    this.player,
-    //funcao para matar o player
-    this.derrotaPage,
-    null,
-    this
-  );
+    this.physics.add.collider(
+      inimigoWhatsapp,
+      this.player,
+      //funcao para matar o player
+      this.derrotaPage,
+      null,
+      this
+    );
 
-  inimigoWhatsapp.body.setVelocityY(400);
-  inimigoWhatsapp.anims.play("whatfront", true)  
-
-  setTimeout(() => this.criaInimigo(this.player.body.position.x), 2000)
-  setTimeout(() => this.criaInimigo(this.player.body.position.x+100), 3000)
-  // setTimeout(() => this.criaInimigo(this.player.body.position.x-30), 2000)
-  // setTimeout(() => this.criaInimigo(this.player.body.position.x+300), 2000)
+    inimigoWhatsapp.body.setSize(22, 70);
+    inimigoWhatsapp.body.setVelocityY(350);
+    inimigoWhatsapp.anims.play("whatfront", true)  
+    setTimeout(() => this.criaInimigo(this.player.body.position.x), 2000)
+    setTimeout(() => this.criaInimigo(this.player.body.position.x+100), 3000)
+  
+  }
 
 }
 
@@ -327,7 +331,7 @@ derrotaPage() {
 }
 vitoriaPage() {
   // console.log('ganhamu')
-  this.scene.start("VitoriaWhatsapp");
+  this.scene.start("Fim");
 }
 
 hitEnemy() {
